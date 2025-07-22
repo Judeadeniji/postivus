@@ -761,7 +761,7 @@ function ContactForm() {
 			<div className="mb-6">
 				<label
 					htmlFor="name"
-					className="block text-gray-700 text-base font-medium mb-2"
+					className="block text-dark-grey font-medium mb-2"
 				>
 					Name
 				</label>
@@ -778,7 +778,7 @@ function ContactForm() {
 			<div className="mb-6">
 				<label
 					htmlFor="email"
-					className="block text-gray-700 text-base font-medium mb-2"
+					className="block text-dark-grey font-medium mb-2"
 				>
 					Email*
 				</label>
@@ -796,7 +796,7 @@ function ContactForm() {
 			<div className="mb-8">
 				<label
 					htmlFor="message"
-					className="block text-gray-700 text-base font-medium mb-2"
+					className="block text-dark-grey font-medium mb-2"
 				>
 					Message*
 				</label>
@@ -804,7 +804,7 @@ function ContactForm() {
 					id="message"
 					name="message"
 					placeholder="Message"
-					rows={6}
+					rows={4}
 					required
 					className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none transition duration-200 ease-in-out"
 				/>
@@ -826,9 +826,9 @@ function ContactUsSection() {
 			title="Contact Us"
 			description="Ready to take your digital marketing to the next level? Contact us today to discuss how we can help your business grow and succeed online."
 		>
-			<div className="bg-grey py-8 md:py-12 rounded-4xl grid grid-cols-1 md:grid-cols-4">
-				<div className="col-span-3 pl-8 md:pl-12">
-					<form>
+			<div className="bg-grey rounded-4xl grid grid-cols-1 md:grid-cols-2">
+				<div className="col-span-1 pl-8 md:pl-24 flex flex-col justify-center">
+					<form onSubmit={(e) => e.preventDefault()}>
 						<CustomRadioButtons />
 						<ContactForm />
 					</form>

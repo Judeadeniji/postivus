@@ -1,26 +1,4 @@
-import { cn } from "@sglara/cn";
-import { Link } from "@tanstack/react-router";
-import type { ComponentProps } from "react";
-
-function NavLink({
-	className,
-	children,
-	...props
-}: ComponentProps<typeof Link> & { children: React.ReactNode }) {
-	return (
-		<Link {...props}>
-			{({ isActive }) => (
-				<div
-					className={cn("px-1 py-0.5 rounded-md hover:bg-green", {
-						"bg-green": isActive,
-					})}
-				>
-					{children}
-				</div>
-			)}
-		</Link>
-	);
-}
+import { NavLink } from "./NavLink";
 
 export default function Header() {
 	return (
