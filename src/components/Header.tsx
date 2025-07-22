@@ -32,7 +32,7 @@ export default function Header() {
 					className="h-4 md:h-6 w-auto"
 				/>
 			</figure>
-			<nav className="flex flex-row items-center space-x-6">
+			<nav className="hidden md:flex flex-row items-center space-x-6">
 				<NavLink to="/">About Us</NavLink>
 				<NavLink to="/services">Services</NavLink>
 				<NavLink to="/use-cases">Use Cases</NavLink>
