@@ -1,6 +1,7 @@
 import amazonLogo from "@/assets/amazon.svg";
 import ArrowIcon2 from "@/assets/arrow-icon-2.svg";
 import ArrowIcon from "@/assets/arrow-icon.svg";
+import contactIllustration from "@/assets/contact-illustration.png";
 import CTAImage from "@/assets/cta-img.png";
 import dribbleLogo from "@/assets/dribble.svg";
 import hubspotLogo from "@/assets/hubspot.svg";
@@ -16,6 +17,7 @@ import zoomLogo from "@/assets/zoom.svg";
 import { cn } from "@sglara/cn";
 import { createFileRoute } from "@tanstack/react-router";
 import {
+	type ChangeEventHandler,
 	Children,
 	type ComponentProps,
 	type PropsWithChildren,
@@ -31,7 +33,7 @@ export const Route = createFileRoute("/")({
 
 function Hero() {
 	return (
-		<section className="grid grid-cols-1 md:grid-cols-2 gap-x-12 mt-8 px-4">
+		<section className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-8 px-4">
 			<div className="col-span-1">
 				<div className="md:px-4 space-y-6 my-auto">
 					<h1 className="text-left font-medium text-h1-mobile md:text-h1 leading-tight">
@@ -59,7 +61,7 @@ function Hero() {
 					alt="loudspeaker"
 				/>
 			</div>
-			<div className="col-span-2">
+			<div className="col-span-1 md:col-span-2">
 				<Companies />
 			</div>
 		</section>
@@ -96,11 +98,13 @@ function SectionHeader({
 	description,
 }: { title: string; description: string }) {
 	return (
-		<div className="flex flex-row items-center gap-x-12 mb-12">
-			<h2 className="text-h2-mobile md:text-h2 px-2 font-medium leading-tight bg-green rounded-md">
-				{title}
-			</h2>
-			<p className="text-p-mobile md:text-p text-dark-grey max-w-xl">
+		<div className="flex flex-col md:flex-row items-center gap-x-12 gap-y-4 mb-8 md:mb-12">
+			<div>
+				<h2 className="text-h2-mobile md:text-h2 px-2 inline font-medium leading-tight bg-green rounded-md">
+					{title}
+				</h2>
+			</div>
+			<p className="text-p-mobile md:text-p text-center md:text-start text-dark-grey max-w-xl">
 				{description}
 			</p>
 		</div>
@@ -122,11 +126,11 @@ function Section({
 
 function Card({ className, ...props }: ComponentProps<"div">) {
 	return (
-		<div className={cn("col-span-1", "relative")} {...props}>
+		<div className="col-span-1 relative" {...props}>
 			<div className="absolute -inset-x-0.5 -inset-y-1.5 transform translate-y-1 bg-black rounded-4xl" />
 			<div
 				className={cn(
-					"relative z-10 h-full rounded-[calc(var(--radius-4xl)-2px)] p-12",
+					"relative z-10 h-full rounded-[calc(var(--radius-4xl)-2px)] p-8 md:p-12",
 					className,
 				)}
 			>
@@ -147,7 +151,7 @@ function ServicesSection() {
 					<div className="grid grid-cols-2 gap-x-4 md:gap-x-8">
 						<div className="col-span-1 flex flex-col justify-between">
 							<div>
-								<h3 className="text-h3-mobile md:text-h3 leading-tight !inline [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-green rounded-md px-2">
+								<h3 className="text-h4-mobile md:text-h3 leading-tight !inline [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-green rounded-md px-2">
 									Search Engine Optimization
 								</h3>
 							</div>
@@ -160,7 +164,11 @@ function ServicesSection() {
 							</div>
 						</div>
 						<div className="col-span-1">
-							<img src={seoImage} alt="Magnifier" className="w-full h-auto" />
+							<img
+								src={seoImage}
+								alt="Magnifier"
+								className="w-full h-auto aspect-square"
+							/>
 						</div>
 					</div>
 				</Card>
@@ -169,7 +177,7 @@ function ServicesSection() {
 					<div className="grid grid-cols-2 gap-x-4 md:gap-x-8">
 						<div className="col-span-1 flex flex-col justify-between">
 							<div>
-								<h3 className="text-h3-mobile md:text-h3 leading-tight !inline [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-grey rounded-md px-2">
+								<h3 className="text-h4-mobile md:text-h3 leading-tight !inline [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-grey rounded-md px-2">
 									Pay-Per-Click Advertising
 								</h3>
 							</div>
@@ -185,7 +193,7 @@ function ServicesSection() {
 							<img
 								src={ppcImage}
 								alt="Browser Window"
-								className="w-full h-auto"
+								className="w-full h-auto aspect-square"
 							/>
 						</div>
 					</div>
@@ -195,7 +203,7 @@ function ServicesSection() {
 					<div className="grid grid-cols-2 gap-x-4 md:gap-x-8">
 						<div className="col-span-1 flex flex-col justify-between">
 							<div>
-								<h3 className="text-h3-mobile md:text-h3 leading-tight !inline [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-white rounded-md px-2">
+								<h3 className="text-h4-mobile md:text-h3 leading-tight !inline [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-white rounded-md px-2">
 									Social Media Marketing
 								</h3>
 							</div>
@@ -209,7 +217,7 @@ function ServicesSection() {
 							<img
 								src={smmImage}
 								alt="Browser Window with Likes"
-								className="w-full h-auto"
+								className="w-full h-auto aspect-square"
 							/>
 						</div>
 					</div>
@@ -219,7 +227,7 @@ function ServicesSection() {
 					<div className="grid grid-cols-2 gap-x-4 md:gap-x-8">
 						<div className="col-span-1 flex flex-col justify-between">
 							<div>
-								<h3 className="text-h3-mobile md:text-h3 leading-tight !inline [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-green rounded-md px-2">
+								<h3 className="text-h4-mobile md:text-h3 leading-tight !inline [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-green rounded-md px-2">
 									Email Marketing
 								</h3>
 							</div>
@@ -235,7 +243,7 @@ function ServicesSection() {
 							<img
 								src={emailImage}
 								alt="Sending Messages"
-								className="w-full h-auto"
+								className="w-full h-auto aspect-square"
 							/>
 						</div>
 					</div>
@@ -245,7 +253,7 @@ function ServicesSection() {
 					<div className="grid grid-cols-2 gap-x-4 md:gap-x-8">
 						<div className="col-span-1 flex flex-col justify-between">
 							<div>
-								<h3 className="text-h3-mobile md:text-h3 leading-tight !inline [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-grey rounded-md px-2">
+								<h3 className="text-h4-mobile md:text-h3 leading-tight !inline [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-grey rounded-md px-2">
 									Content Creation
 								</h3>
 							</div>
@@ -261,7 +269,7 @@ function ServicesSection() {
 							<img
 								src={contentImage}
 								alt="Browser Windows with Information"
-								className="w-full h-auto"
+								className="w-full h-auto aspect-square"
 							/>
 						</div>
 					</div>
@@ -271,7 +279,7 @@ function ServicesSection() {
 					<div className="grid grid-cols-2 gap-x-4 md:gap-x-8">
 						<div className="col-span-1 flex flex-col justify-between min-w-0">
 							<div>
-								<h3 className="text-h3-mobile md:text-h3 leading-tight !inline [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-white rounded-md px-2">
+								<h3 className="text-h4-mobile md:text-h3 leading-tight !inline [box-decoration-break:clone] [-webkit-box-decoration-break:clone] bg-white rounded-md px-2">
 									Analytics and tracking
 								</h3>
 							</div>
@@ -285,7 +293,7 @@ function ServicesSection() {
 							<img
 								src={analyticsImage}
 								alt="Analytics in Web Browsers"
-								className="w-full h-auto"
+								className="w-full h-auto aspect-square"
 							/>
 						</div>
 					</div>
@@ -297,7 +305,7 @@ function ServicesSection() {
 
 function CTA() {
 	return (
-		<section className="bg-grey grid grid-cols-1 md:grid-cols-3 gap-x-12 px-12 py-6 rounded-4xl">
+		<section className="mx-4 bg-grey grid grid-cols-1 md:grid-cols-3 gap-x-12 px-8 md:px-12 py-6 rounded-4xl">
 			<div className="flex flex-col justify-center space-y-6 text-left col-span-1 md:col-span-2">
 				<h2 className="text-h2-mobile md:text-h2 font-medium leading-tight">
 					Let’s make things happen
@@ -314,11 +322,11 @@ function CTA() {
 				</button>
 			</div>
 
-			<div className="col-span-1 relative flex items-center justify-center">
+			<div className="col-span-1 relative hidden md:flex items-center justify-center">
 				<img
 					src={CTAImage}
 					alt="Contact Us"
-					className="w-full max-w-md h-auto"
+					className="w-full md:max-w-md h-auto"
 				/>
 			</div>
 		</section>
@@ -441,7 +449,7 @@ function AccordionItem({
 						</span>
 						<span
 							className={cn(
-								"text-h3-mobile md:text-h3 leading-tight !inline [box-decoration-break:clone] [-webkit-box-decoration-break:clone] rounded-md px-2",
+								"text-h4-mobile md:text-h3 leading-tight !inline [box-decoration-break:clone] [-webkit-box-decoration-break:clone] rounded-md px-2",
 							)}
 						>
 							{title}
@@ -630,7 +638,7 @@ function TeamsSection() {
 									<div>
 										<h3
 											className={cn(
-												"text-h3-mobile md:text-h3 leading-tight !inline [box-decoration-break:clone] [-webkit-box-decoration-break:clone] rounded-md px-2",
+												"text-h4-mobile md:text-h3 leading-tight !inline [box-decoration-break:clone] [-webkit-box-decoration-break:clone] rounded-md px-2",
 												index % 3 === 0
 													? "bg-green"
 													: index % 3 === 1
@@ -667,7 +675,7 @@ function TeamsSection() {
 			<div className="w-full flex flex-row-reverse mt-8">
 				<button
 					type="button"
-					className="ml-auto py-3.5 px-6 bg-dark-grey text-white rounded-xl w-54 hover:underline"
+					className="md:ml-auto py-3.5 px-6 bg-dark-grey text-white rounded-xl w-full md:w-54 hover:underline"
 				>
 					See all team members
 				</button>
@@ -676,15 +684,163 @@ function TeamsSection() {
 	);
 }
 
+function CustomRadioButtons() {
+	const [selectedGreeting, setSelectedGreeting] = useState("say-hi");
+
+	const handleGreetingChange: ChangeEventHandler<HTMLInputElement> = (
+		event,
+	) => {
+		setSelectedGreeting(event.target.value);
+	};
+
+	return (
+		<div className="flex gap-x-8">
+			<div className="flex items-center">
+				<input
+					type="radio"
+					id="say-hi"
+					name="greeting-type"
+					value="say-hi"
+					className="hidden"
+					checked={selectedGreeting === "say-hi"}
+					onChange={handleGreetingChange}
+				/>
+				<label
+					htmlFor="say-hi"
+					className="relative flex items-center cursor-pointer text-gray-700 text-lg"
+				>
+					<span className="w-6 h-6 rounded-full border mr-2 bg-white flex items-center justify-center transition-all duration-200 ease-in-out">
+						<span
+							className={cn(
+								"w-3 h-3 rounded-full bg-transparent transition-all duration-200 ease-in-out",
+								{
+									"bg-green": selectedGreeting === "say-hi",
+								},
+							)}
+						/>
+					</span>
+					Say Hi
+				</label>
+			</div>
+
+			<div className="flex items-center">
+				<input
+					type="radio"
+					id="get-a-quote"
+					name="greeting-type"
+					value="get-a-quote"
+					className="hidden"
+					checked={selectedGreeting === "get-a-quote"}
+					onChange={handleGreetingChange}
+				/>
+				<label
+					htmlFor="get-a-quote"
+					className="relative flex items-center cursor-pointer text-gray-700 text-lg"
+				>
+					<span className="w-6 h-6 rounded-full border mr-2 bg-white flex items-center justify-center transition-all duration-200 ease-in-out">
+						<span
+							className={cn(
+								"w-3 h-3 rounded-full bg-transparent transition-all duration-200 ease-in-out",
+								{
+									"bg-green": selectedGreeting === "get-a-quote",
+								},
+							)}
+						/>
+					</span>
+					Get a Quote
+				</label>
+			</div>
+		</div>
+	);
+}
+
+function ContactForm() {
+	return (
+		<div className="max-w-md mt-8">
+			{/* Name Input */}
+			<div className="mb-6">
+				<label
+					htmlFor="name"
+					className="block text-gray-700 text-base font-medium mb-2"
+				>
+					Name
+				</label>
+				<input
+					type="text"
+					id="name"
+					name="name"
+					placeholder="Name"
+					className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out"
+				/>
+			</div>
+
+			{/* Email Input */}
+			<div className="mb-6">
+				<label
+					htmlFor="email"
+					className="block text-gray-700 text-base font-medium mb-2"
+				>
+					Email*
+				</label>
+				<input
+					type="email"
+					id="email"
+					name="email"
+					placeholder="Email"
+					required
+					className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out"
+				/>
+			</div>
+
+			{/* Message Textarea */}
+			<div className="mb-8">
+				<label
+					htmlFor="message"
+					className="block text-gray-700 text-base font-medium mb-2"
+				>
+					Message*
+				</label>
+				<textarea
+					id="message"
+					name="message"
+					placeholder="Message"
+					rows={6}
+					required
+					className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none transition duration-200 ease-in-out"
+				/>
+			</div>
+
+			<button
+				type="submit"
+				className="w-full bg-dark-grey text-white py-3 rounded-lg font-semibold hover:bg-dark-grey/80 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-opacity-50 transition duration-200 ease-in-out"
+			>
+				Send Message
+			</button>
+		</div>
+	);
+}
+
 function ContactUsSection() {
 	return (
 		<Section
 			title="Contact Us"
 			description="Ready to take your digital marketing to the next level? Contact us today to discuss how we can help your business grow and succeed online."
-			>
-				<div className="bg-grey p-12 rounded-4xl">
-
+		>
+			<div className="bg-grey py-8 md:py-12 rounded-4xl grid grid-cols-1 md:grid-cols-4">
+				<div className="col-span-3 pl-8 md:pl-12">
+					<form>
+						<CustomRadioButtons />
+						<ContactForm />
+					</form>
 				</div>
+				<div className="col-span-1 overflow-clip md:py-16">
+					<img
+						src={contactIllustration}
+						alt="illustration"
+						className="relative aspect-auto h-full -right-1/2"
+					/>
+				</div>
+			</div>
 		</Section>
 	);
 }
