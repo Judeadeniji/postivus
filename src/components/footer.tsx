@@ -5,7 +5,7 @@ import { NavLink } from "./NavLink";
 
 export function Footer() {
 	return (
-		<footer className="bg-dark-grey rounded-t-4xl p-4 md:p-8 mt-8 md:mt-12 text-white space-y-4">
+		<footer className="bg-dark-grey rounded-t-4xl p-4 md:p-8 mt-8 md:mt-12 text-white space-y-4 md:space-y-8">
 			<div className="container mx-auto text-center">
 				<div className="p-4 md:px-8 flex justify-between items-center">
 					<figure role="img">
@@ -72,9 +72,39 @@ export function Footer() {
 					</div>
 				</div>
 				<div className="col-span-2">
-                    <div className="bg-zinc-700/80 rounded-md p-4 h-full">
-                    </div>
-                </div>
+					<div className="bg-zinc-700/80 rounded-md p-4 h-full flex items-center justify-center md:max-w-lg md:ml-auto">
+						<div className="flex items-center space-x-4">
+							<input
+								type="email"
+								placeholder="Subscribe to our newsletter"
+								className="p-2 rounded-md bg-white text-dark-grey placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green w-full md:w-64"
+							/>
+							<button
+								type="button"
+								className="bg-green text-dark-grey px-4 py-2 rounded-md hover:bg-green/80 transition-colors"
+							>
+								Subscribe
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div className="text-left text-sm pt-8 border-t">
+				<p className="text-gray-400 space-x-2">
+					<span>
+						&copy; {new Date().getFullYear()} Positivus. All rights reserved.
+					</span>
+					<span className="text-gray-400">
+						Designed with <span className="text-red-500">♥</span> by{" "}
+						<a
+							href="https://feranmi-v3.netlify.app/"
+							className="text-green hover:underline"
+						>
+							Oluwaferanmi
+						</a>
+					</span>
+				</p>
 			</div>
 		</footer>
 	);
