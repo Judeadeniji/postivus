@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as UseCasesRouteImport } from './routes/use-cases'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as IndexNewRouteImport } from './routes/index-new'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -29,6 +30,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexNewRoute = IndexNewRouteImport.update({
+  id: '/index-new',
+  path: '/index-new',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogRoute = BlogRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
+  '/index-new': typeof IndexNewRoute
   '/pricing': typeof PricingRoute
   '/services': typeof ServicesRoute
   '/use-cases': typeof UseCasesRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
+  '/index-new': typeof IndexNewRoute
   '/pricing': typeof PricingRoute
   '/services': typeof ServicesRoute
   '/use-cases': typeof UseCasesRoute
@@ -68,20 +76,36 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/blog': typeof BlogRoute
+  '/index-new': typeof IndexNewRoute
   '/pricing': typeof PricingRoute
   '/services': typeof ServicesRoute
   '/use-cases': typeof UseCasesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/blog' | '/pricing' | '/services' | '/use-cases'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/blog'
+    | '/index-new'
+    | '/pricing'
+    | '/services'
+    | '/use-cases'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/blog' | '/pricing' | '/services' | '/use-cases'
+  to:
+    | '/'
+    | '/about'
+    | '/blog'
+    | '/index-new'
+    | '/pricing'
+    | '/services'
+    | '/use-cases'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/blog'
+    | '/index-new'
     | '/pricing'
     | '/services'
     | '/use-cases'
@@ -91,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   BlogRoute: typeof BlogRoute
+  IndexNewRoute: typeof IndexNewRoute
   PricingRoute: typeof PricingRoute
   ServicesRoute: typeof ServicesRoute
   UseCasesRoute: typeof UseCasesRoute
@@ -117,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/index-new': {
+      id: '/index-new'
+      path: '/index-new'
+      fullPath: '/index-new'
+      preLoaderRoute: typeof IndexNewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog': {
@@ -147,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BlogRoute: BlogRoute,
+  IndexNewRoute: IndexNewRoute,
   PricingRoute: PricingRoute,
   ServicesRoute: ServicesRoute,
   UseCasesRoute: UseCasesRoute,
